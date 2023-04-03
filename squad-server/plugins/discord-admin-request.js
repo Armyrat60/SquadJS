@@ -113,9 +113,14 @@ export default class DiscordAdminRequest extends DiscordBasePlugin {
         title: `${info.player.name} has requested admin support!`,
         color: this.options.color,
         fields: [
+         {
+            name: 'Server 1',
+            value: `\`\`\`${(this.server.serverName)}\`\`\``,
+            inline: false
+          },
           {
             name: 'Player',
-            value: info.player.name,
+            value: `\`\`\`${info.player.name}\`\`\``,
             inline: true
           },
           {
@@ -125,15 +130,20 @@ export default class DiscordAdminRequest extends DiscordBasePlugin {
           },
           {
             name: 'Team & Squad',
-            value: `Team: ${info.player.teamID}, Squad: ${info.player.squadID || 'Unassigned'}`
+            value: `\`\`\`${`Team: ${info.player.teamID}, Squad: ${info.player.squadID || 'Unassigned'}`}\`\`\``,
           },
           {
             name: 'Message',
-            value: info.message
+            value: `\`\`\`${info.message}\`\`\``,
           },
-          {
+         {
             name: 'Admins Online',
-            value: amountAdmins
+            value: `\`\`\`${amountAdmins}\`\`\``,
+          },
+         {
+            name: '----------------------------------------',
+            value: `•[Steam](https://steamcommunity.com/profiles/${info.player.steamID}) | •[Battlemetrics](https://www.battlemetrics.com/players/${info.player.playerid}) | •[Community Ban List](https://communitybanlist.com/search/${info.player.steamID})`,
+            inline: false
           }
         ],
         timestamp: info.time.toISOString()
