@@ -108,11 +108,16 @@ export default class DiscordAdminRequest extends DiscordBasePlugin {
         await this.server.rcon.warn(player.steamID, `[${info.player.name}] - ${info.message}`);
     }
 
-    const message = {
+     const message = {
       embed: {
         title: `${info.player.name} has requested admin support!`,
         color: this.options.color,
         fields: [
+         {
+            name: 'Server',
+            value: (this.server.serverName),
+            inline: false
+          },
           {
             name: 'Player',
             value: info.player.name,
@@ -129,11 +134,16 @@ export default class DiscordAdminRequest extends DiscordBasePlugin {
           },
           {
             name: 'Message',
-            value: info.message
+            value: info.message,
           },
-          {
+         {
             name: 'Admins Online',
             value: amountAdmins
+          },
+         {
+            name: '----------------------------------------',
+            value: `•[Steam](https://steamcommunity.com/profiles/${info.player.steamID}) | •[Battlemetrics](https://www.battlemetrics.com/players/"player.id) | •[Community Ban List](https://communitybanlist.com/search/${info.player.steamID})`,
+            inline: false
           }
         ],
         timestamp: info.time.toISOString()
